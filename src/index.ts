@@ -1,3 +1,3 @@
-export function main(): string {
-    return 'INIT';
+export function main(name?: string): string {
+    return 'Hello ' + (name || 'World');
 }
