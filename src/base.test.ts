@@ -6,23 +6,29 @@ describe('sumStats', () => {
         expect(sumStats).toBeDefined();
     });
 
-    it('should sum integer array, positive', () => {
-        const result = sumStats([-1, 2, 0, 5, 0]);
+    it ('should no argument treat as empty array', () => {
+        const result = sumStats();
 
-        expect(result).eq(6);
-    });
+        expect(result).eq(0);
+    })
 
-    it('should sum integer array, negative', () => {
-        const result = sumStats([1, -2, 0, -5, 0]);
-
-        expect(result).eq(-6);
-    });
-
-    it('should sum empty array', () => {
+    it ('should sum empty array to 0', () => {
         const result = sumStats([]);
 
         expect(result).eq(0);
-    });
+    })
+
+    it ('should sum integer values', () => {
+        const result = sumStats([1, 3.9, '4.9', undefined, null, 'nope', '0', '0.9', '2']);
+
+        expect(result).eq(10);
+    })
+
+    it ('should sum positive and negative values', () => {
+        const result = sumStats([1, 3.9, '-4.9', undefined, null, 'nope', '0', '0.9', '-2']);
+
+        expect(result).eq(-2);
+    })
 });
 
 describe('calcBaseStats', () => {
@@ -30,76 +36,41 @@ describe('calcBaseStats', () => {
         expect(calcBaseStats).toBeDefined();
     });
 
-    it('should accept number[], number[], number', () => {
-        const result = calcBaseStats([0], [0], 0);
-
-        expect(result).eq(0);
-    });
-
-    it('should accept [], [], number', () => {
-        const result = calcBaseStats([], [], 0);
-
-        expect(result).eq(0);
-    });
-
-    it('should accept number, number, number', () => {
+    it ('zero is zero', () => {
         const result = calcBaseStats(0, 0, 0);
 
         expect(result).eq(0);
-    });
+    })
 
-    it('should accept number[], number, number', () => {
-        const result = calcBaseStats([0], 0, 0);
+    it ('Example 1: Highest known possible frigate', () => {
+        const result = calcBaseStats(7+11+7+4, 1-6-4, 4);
 
-        expect(result).eq(0);
-    });
+        expect(result).eq(14);
+    })
 
-    it('should accept [], number, number', () => {
-        const result = calcBaseStats([], 0, 0);
+    it ('Example 2: Worst support EVER! ', () => {
+        const result = calcBaseStats(1+3+1+2, 0, 2);
 
-        expect(result).eq(0);
-    });
+        expect(result).eq(-5);
+    })
 
-    it('should accept number, number[], number', () => {
-        const result = calcBaseStats(0, [0], 0);
+    it ('Example 3: Best rank 1 support frigate', () => {
+        const result = calcBaseStats(2+3+4+3, 0, 0);
 
-        expect(result).eq(0);
-    });
+        expect(result).eq(12);
+    })
 
-    it('should accept number, [], number', () => {
-        const result = calcBaseStats(0, [], 0);
+    it ('only bonus', () => {
+        const result = calcBaseStats(0, 10, 0);
 
-        expect(result).eq(0);
-    });
+        expect(result).eq(-10);
+    })
+
+    it ('only rank up', () => {
+        const result = calcBaseStats(0, 0, 5);
+
+        expect(result).eq(-30);
+    })
 
 
-    it('should accept main stats as array', () => {
-        const result = calcBaseStats([1, -2, 3], 0, 0);
-
-        expect(result).eq(2);
-    });
-
-    it('should accept main stats as integer', () => {
-        const result = calcBaseStats(123, 0, 0);
-
-        expect(result).eq(123);
-    });
-
-    it('should accept bonus stats as array', () => {
-        const result = calcBaseStats(0, [-3, 2, -1], 0);
-
-        expect(result).eq(2);
-    });
-
-    it('should accept bonus stats as integer', () => {
-        const result = calcBaseStats(0, 321, 0);
-
-        expect(result).eq(-321);
-    });
-
-    it('should accept ranks', () => {
-        const result = calcBaseStats(0, 0, 6);
-
-        expect(result).eq(-36);
-    });
 });
