@@ -1,5 +1,16 @@
-const RankUpValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const;
-type RankUps = typeof RankUpValues[number];
+const expeditionsRankUps: [number, number][] = [
+    [0, 0],
+    [4, 1],
+    [8, 2],
+    [15, 3],
+    [25, 4],
+    [30, 5],
+    [35, 6],
+    [40, 7],
+    [45, 8],
+    [50, 9],
+    [55, 10],
+];
 
 export const MAX_BONUS = 60;
 export const MAX_EXPEDITIONS = 55;
@@ -11,31 +22,19 @@ export function sumStats(stats: (number | string)[] = []): number {
         .reduce((s, v) => s + v, 0);
 }
 
-
-export function calcBaseStats(mainStats: number, bonusStats: number, rank_ups: RankUps): number {
+export function calcBaseStats(mainStats: number, bonusStats: number, rank_ups: number): number {
     return mainStats - (Math.min(bonusStats, MAX_BONUS) + 6 * rank_ups);
 }
 
-export function calcRankUps(expeditions: number): RankUps {
-    switch (true) {
-        case expeditions < 4:
-            return RankUpValues[0];
-        case expeditions < 8:
-            return RankUpValues[1];
-        case expeditions < 15:
-            return RankUpValues[2];
-        case expeditions < 25:
-            return RankUpValues[3];
+export function calcRankUps(expeditions: number): number {
+    expeditions = Math.min(Math.max(0, expeditions), MAX_EXPEDITIONS);
+    let closestRank = 0;
+    for (let [expCount, rankCount] of expeditionsRankUps) {
+        if (expCount <= expeditions) {
+            closestRank = rankCount;
+        }
     }
-
-    expeditions = Math.min(expeditions, MAX_EXPEDITIONS)
-    const rankUps = Math.floor(expeditions/5) - 1;
-
-    if (rankUps in RankUpValues) {
-        return rankUps as RankUps;
-    }
-
-    return RankUpValues[0];
+    return closestRank;
 }
 
 export default {};
