@@ -7,11 +7,11 @@ describe('isGlitched', () => {
     });
 
     it('is likely glitched when negative baseStats', () => {
-        expect(isGlitched(-10, 0)).eq(true);
+        expect(isGlitched(-10, 0)).toBe(true);
     });
 
     it('is not glitched when positive baseStats', () => {
-        expect(isGlitched(10, 0)).eq(false);
+        expect(isGlitched(10, 0)).toBe(false);
     });
 
     test.each([
@@ -77,6 +77,6 @@ describe('isGlitched', () => {
         {'expeditions': 59, 'rankUp': false},
         {'expeditions': 60, 'rankUp': false},
     ])('is glitched when $expeditions match rankUp', ({expeditions, rankUp}) => {
-        expect(isGlitched(0, expeditions)).eq(rankUp);
+        expect(isGlitched(0, expeditions)).toBe(rankUp);
     });
 });

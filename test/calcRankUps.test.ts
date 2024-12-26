@@ -69,7 +69,7 @@ describe('calcRankUps', () => {
             {"expeditions": 59, "rankUp": false, "total": 10},
             {"expeditions": 60, "rankUp": false, "total": 10}
         ])('calc rankUps for $expeditions expeditions', ({expeditions, total}) => {
-            expect(calcRankUps(expeditions)).eq(total)
+            expect(calcRankUps(expeditions)).toBe(total)
     })
 });
 
