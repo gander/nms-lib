@@ -37,4 +37,18 @@ export function calcRankUps(expeditions: number): number {
     return closestRank;
 }
 
+export function isGlitched(baseStats: number, expeditions: number): boolean {
+    if (baseStats < 0) {
+        return true;
+    }
+
+    for (const [expCount] of expeditionsRankUps) {
+        if (expCount > 0 && expCount === expeditions) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 export default {};
