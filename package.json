@@ -2,7 +2,11 @@
     "name": "@gander/nms-lib",
     "description": "NMS Calc Library",
     "version": "0.1.0",
-    "keywords": ["nomanssky", "No Man's Sky", "calculator"],
+    "keywords": [
+        "nomanssky",
+        "No Man's Sky",
+        "calculator"
+    ],
     "author": "Gander",
     "license": "MIT",
     "bugs": {

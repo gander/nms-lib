@@ -1,27 +1,27 @@
 {
-  "compilerOptions": {
-    "lib": [
-      "esnext"
+    "compilerOptions": {
+        "lib": [
+            "esnext"
+        ],
+        "declaration": true,
+        "declarationDir": "./dist/types",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "node",
+        "baseUrl": ".",
+        "rootDir": "./src"
+    },
+    "include": [
+        "src"
     ],
-    "declaration": true,
-    "declarationDir": "./dist/types",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
-    "baseUrl": ".",
-    "rootDir": "./src"
-  },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "dist",
-    "node_modules",
-    "**/*.spec.ts",
-    "**/*.test.ts",
-    "**/tests/**",
-    "**/__tests__/**"
-  ]
+    "exclude": [
+        "dist",
+        "node_modules",
+        "**/*.spec.ts",
+        "**/*.test.ts",
+        "**/tests/**",
+        "**/__tests__/**"
+    ]
 }
