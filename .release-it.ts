@@ -12,6 +12,7 @@ export default {
     },
     npm: {
         publish: true,
+        publishPath: 'dist'
     },
     hooks: {
         'before:init': 'bun run test --run',
