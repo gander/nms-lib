@@ -1,2 +1,2 @@
-export * from './base'
-export * from './reactive'
+export * from './base';
+export * from './reactive';
