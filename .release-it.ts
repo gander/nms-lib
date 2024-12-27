@@ -3,9 +3,9 @@ import type {Config} from 'release-it';
 export default {
     git: {
         commit: true,
+        commitArgs: ['-S'],
         tag: true,
         push: true,
-        pushArgs: ['-S'],
     },
     github: {
         release: true,
