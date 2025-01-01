@@ -15,9 +15,11 @@ const expeditionsRankUps: [number, number][] = [
 export const MAX_BONUS = 60;
 export const MAX_EXPEDITIONS = 55;
 
-export function sumStats(stats: (number | string)[] = []): number {
+export type SumStatsArgument = number | string | undefined | null
+
+export function sumStats(stats: SumStatsArgument[] = []): number {
     return stats
-        .map((v: number | string) => Number.parseInt(String(v)))
+        .map((v: SumStatsArgument) => Number.parseInt(String(v)))
         .filter(v => Number.isInteger(v))
         .reduce((s, v) => s + v, 0);
 }
@@ -51,4 +53,3 @@ export function isGlitched(baseStats: number, expeditions: number): boolean {
     return false;
 }
 
-export default {};
