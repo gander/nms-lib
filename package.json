@@ -2,7 +2,7 @@
     "name": "@gander/nms-lib",
     "description": "NMS Calc Library",
     "type": "commonjs",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "keywords": [
         "nomanssky",
         "No Man's Sky",
