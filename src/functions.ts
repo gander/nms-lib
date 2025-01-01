@@ -31,7 +31,7 @@ export function calcBaseStats(mainStats: number, bonusStats: number, rank_ups: n
 export function calcRankUps(expeditions: number): number {
     expeditions = Math.min(Math.max(0, expeditions), MAX_EXPEDITIONS);
     let closestRank = 0;
-    for (let [expCount, rankCount] of expeditionsRankUps) {
+    for (const [expCount, rankCount] of expeditionsRankUps) {
         if (expCount <= expeditions) {
             closestRank = rankCount;
         }
