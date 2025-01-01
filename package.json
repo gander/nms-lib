@@ -1,6 +1,7 @@
 {
     "name": "@gander/nms-lib",
     "description": "NMS Calc Library",
+    "type": "commonjs",
     "version": "1.0.2",
     "keywords": [
         "nomanssky",
@@ -13,13 +14,17 @@
         "url": "https://github.com/gander/nms-lib/issues"
     },
     "homepage": "https://github.com/gander/nms-lib",
-    "main": "./dist/cjs/index.js",
-    "module": "./dist/esm/index.js",
-    "types": "./dist/types/index.d.ts",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.cts",
     "exports": {
-        ".": {
-            "require": "./dist/cjs/index.js",
-            "import": "./dist/esm/index.js"
+        "require": {
+            "types": "./dist/index.d.cts",
+            "default": "./dist/index.cjs"
+        },
+        "import": {
+            "types": "./dist/index.d.mts",
+            "default": "./dist/index.mjs"
         }
     },
     "files": [
@@ -29,24 +34,23 @@
         "access": "public"
     },
     "scripts": {
-        "build:cjs": "tsc -p tsconfig.cjs.json",
-        "build:esm": "tsc -p tsconfig.esm.json",
-        "build": "bun run build:cjs && bun run build:esm",
-        "clean": "rimraf dist",
-        "prepack": "bun run clean && bun run build",
-        "release": "release-it",
-        "test": "vitest",
-        "test-ui": "vitest --ui"
+        "prepack": "vitest --run && tsc && pkgroll --clean-dist --sourcemap --minify && publint",
+        "release": "release-it --only-version",
+        "coverage": "vitest --coverage",
+        "test": "vitest"
     },
     "devDependencies": {
         "@types/bun": "^1.1.14",
-        "@types/node": "^22.10.2",
+        "@types/node": "^22.10.3",
+        "@vitest/coverage-v8": "2.1.8",
         "@vitest/ui": "^2.1.8",
+        "pkgroll": "^2.6.0",
+        "publint": "^0.2.12",
         "release-it": "^17.11.0",
         "vitest": "^2.1.8"
     },
     "peerDependencies": {
-        "typescript": "^5.5.0",
-        "@vue/reactivity": "^3.5.0"
+        "typescript": "^5.7.2",
+        "@vue/reactivity": "^3.5.13"
     }
 }

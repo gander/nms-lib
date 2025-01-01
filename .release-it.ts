@@ -14,6 +14,6 @@ export default {
         publish: true,
     },
     hooks: {
-        'before:init': 'bun run test --run',
+        'before:init': 'bun run prepack',
     },
 } satisfies Config;
